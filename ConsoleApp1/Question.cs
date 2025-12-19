@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+
 
 public class Question
 {
@@ -13,7 +14,7 @@ public class Question
     private string questionOptions;
 
     // Static list holding all questions from CSV file
-    // Shared across the application
+    // Shared accross the application
     private static List<Question> QuestionLists = new List<Question>();
 
     public static List<Question> GetAllQuestions()
@@ -25,101 +26,36 @@ public class Question
     // Called once at application startup
     public static void LoadQuestion(string destinationFilePath)
     {
-        QuestionLists.Clear(); // Clear existing questions
-        
         using (var reader = new StreamReader(destinationFilePath))
         {
-            // Skip the header line
+            // Skip the heqader line
             reader.ReadLine();
-            
-            int lineNumber = 1; // Track line number for error reporting
-            
             while (!reader.EndOfStream)
             {
-                lineNumber++;
-                try
-                {
-                    var line = reader.ReadLine();
-                    if (string.IsNullOrWhiteSpace(line)) continue;
-                    
-                    // Use proper CSV parsing to handle quotes and commas
-                    var values = ParseCsvLine(line);
+                var line = reader.ReadLine();
+                var values = line.Split(',');
 
-                    if (values.Count < 5)
-                    {
-                        Console.WriteLine($"Warning: Skipping line {lineNumber} - insufficient columns ({values.Count} found, 5 expected)");
-                        continue;
-                    }
+                // Read each value into the relevant variable
+                int QuestionID = int.Parse(values[0]);
+                string QuestionText = values[1];
+                string QuestionOptions = values[2];
+                string CorrectAnswer = values[3];
+                string DifficultyLevel = values[4];
 
-                    // Read each value into the relevant variable
-                    int QuestionID = int.Parse(values[0].Trim());
-                    string QuestionText = values[1].Trim();
-                    string QuestionOptions = values[2].Trim();
-                    string CorrectAnswer = values[3].Trim();
-                    string DifficultyLevel = values[4].Trim();
-
-                    // Create a question and add it to the list
-                    Question q = new Question(QuestionID, QuestionText, QuestionOptions, CorrectAnswer, DifficultyLevel);
-                    QuestionLists.Add(q);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error parsing line {lineNumber}: {ex.Message}");
-                    Console.WriteLine($"Line content: {reader.ReadLine()}");
-                }
+                // Create a question and add it to the list
+                Question q = new Question(QuestionID, QuestionText, QuestionOptions, CorrectAnswer, DifficultyLevel);
+                QuestionLists.Add(q);
             }
         }
-    }
-
-    // Parses a CSV line properly handling quotes and commas
-    private static List<string> ParseCsvLine(string line)
-    {
-        List<string> fields = new List<string>();
-        StringBuilder currentField = new StringBuilder();
-        bool inQuotes = false;
-
-        for (int i = 0; i < line.Length; i++)
-        {
-            char c = line[i];
-
-            if (c == '"')
-            {
-                if (inQuotes && i + 1 < line.Length && line[i + 1] == '"')
-                {
-                    // Escaped quote (two quotes in a row)
-                    currentField.Append('"');
-                    i++; // Skip next quote
-                }
-                else
-                {
-                    // Toggle quote mode
-                    inQuotes = !inQuotes;
-                }
-            }
-            else if (c == ',' && !inQuotes)
-            {
-                // End of field
-                fields.Add(currentField.ToString());
-                currentField.Clear();
-            }
-            else
-            {
-                currentField.Append(c);
-            }
-        }
-
-        // Add the last field
-        fields.Add(currentField.ToString());
-
-        return fields;
     }
 
     // Used when adding a new question
     public static void SaveQuestionToCSV(string filePath, Question q)
+
     {
         using (var writer = new StreamWriter(filePath, true))
         {
-            writer.WriteLine(FormatCsvLine(q));
+            writer.WriteLine($"{q.QuestionID},{q.QuestionText},{q.QuestionOptions},{q.QuestionCorrectAnswer},{q.QuestionDifficulty}");
         }
     }
 
@@ -135,26 +71,9 @@ public class Question
             // Write each question to the file
             foreach (Question q in QuestionLists)
             {
-                writer.WriteLine(FormatCsvLine(q));
+                writer.WriteLine($"{q.QuestionID},{q.QuestionText},{q.QuestionOptions},{q.QuestionCorrectAnswer},{q.QuestionDifficulty}");
             }
         }
-    }
-
-    // Formats a question as a CSV line, properly escaping quotes and commas
-    private static string FormatCsvLine(Question q)
-    {
-        return $"{q.QuestionID}," +
-               $"\"{EscapeCsvField(q.QuestionText)}\"," +
-               $"\"{EscapeCsvField(q.QuestionOptions)}\"," +
-               $"\"{EscapeCsvField(q.QuestionCorrectAnswer)}\"," +
-               $"\"{EscapeCsvField(q.QuestionDifficulty)}\"";
-    }
-
-    // Escapes a CSV field by doubling quotes
-    private static string EscapeCsvField(string field)
-    {
-        if (field == null) return string.Empty;
-        return field.Replace("\"", "\"\"");
     }
 
     // Updates the fields of the question
@@ -207,4 +126,5 @@ public class Question
         this.questionDifficulty = questionDifficulty;
         this.questionOptions = questionOptions;
     }
+
 }
