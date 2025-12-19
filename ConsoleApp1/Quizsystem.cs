@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -114,17 +114,15 @@ public static class QuizSystem
 
     // Edit a question
     // Updates object and rewrites the CSV file
+
     public static void EditQuestion()
     {
         Console.WriteLine("Enter Question ID to edit:");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Invalid ID.");
-            return;
-        }
+        int id = int.Parse(Console.ReadLine());
 
+        // Get the question list from Question class
         List<Question> questions = Question.GetAllQuestions();
-        Question? q = questions.FirstOrDefault(x => x.QuestionID == id);
+        Question q = questions.FirstOrDefault(x => x.QuestionID == id);
 
         if (q == null)
         {
@@ -132,35 +130,36 @@ public static class QuizSystem
             return;
         }
 
+        // Collect updated values from the user
         Console.WriteLine("Enter new question text:");
-        string? newText = Console.ReadLine();
+        string newText = Console.ReadLine();
 
         Console.WriteLine("Enter new options:");
-        string? newOptions = Console.ReadLine();
+        string newOptions = Console.ReadLine();
 
         Console.WriteLine("Enter new correct answer:");
-        string? newAnswer = Console.ReadLine();
+        string newAnswer = Console.ReadLine();
 
         Console.WriteLine("Enter new difficulty:");
-        string? newDifficulty = Console.ReadLine();
+        string newDifficulty = Console.ReadLine();
 
-        q.Update(newText ?? "", newOptions ?? "", newAnswer ?? "", newDifficulty ?? "");
+        // Update the question object
+        q.Update(newText, newOptions, newAnswer, newDifficulty);
+
+        // Save updated list back to CSV
         Question.SaveAllQuestionsToCSV(destinationFilePath);
 
         Console.WriteLine("Question updated successfully.");
     }
 
+
     // Display the correct answer for a question
     public static void ShowAnswer()
     {
         Console.WriteLine("Enter Question ID:");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Invalid ID.");
-            return;
-        }
+        int id = int.Parse(Console.ReadLine());
 
-        Question? q = Question.GetAllQuestions().FirstOrDefault(x => x.QuestionID == id);
+        Question q = Question.GetAllQuestions().FirstOrDefault(x => x.QuestionID == id);
 
         if (q == null)
         {
@@ -175,66 +174,50 @@ public static class QuizSystem
     public static void ShowAllQuestions()
     {
         List<Question> questions = Question.GetAllQuestions();
-        
-        if (questions.Count == 0)
-        {
-            Console.WriteLine("No questions available.");
-            return;
-        }
-
         foreach (Question q in questions)
         {
-            Console.WriteLine(new string('-', 40));
             Console.WriteLine($"ID: {q.QuestionID}");
             Console.WriteLine($"Text: {q.QuestionText}");
             Console.WriteLine($"Options: {q.QuestionOptions}");
             Console.WriteLine($"Correct Answer: {q.QuestionCorrectAnswer}");
             Console.WriteLine($"Difficulty: {q.QuestionDifficulty}");
         }
-        Console.WriteLine(new string('-', 40));
     }
 
     // Add a new question
     public static void AddQuestion()
     {
         Console.WriteLine("Enter Question ID:");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Invalid ID.");
-            return;
-        }
+        int id = int.Parse(Console.ReadLine());
 
         Console.WriteLine("Enter Question Text:");
-        string? text = Console.ReadLine();
+        string text = Console.ReadLine();
 
         Console.WriteLine("Enter Question Options:");
-        string? options = Console.ReadLine();
+        string options = Console.ReadLine();
 
         Console.WriteLine("Enter Correct Answer:");
-        string? answer = Console.ReadLine();
+        string answer = Console.ReadLine();
 
         Console.WriteLine("Enter Difficulty Level:");
-        string? difficulty = Console.ReadLine();
+        string difficulty = Console.ReadLine();
 
-        Question newQ = new Question(id, text ?? "", options ?? "", answer ?? "", difficulty ?? "");
+        Question newQ = new Question(id, text, options, answer, difficulty);
         Question.GetAllQuestions().Add(newQ);
         Question.SaveQuestionToCSV(destinationFilePath, newQ);
         Console.WriteLine("Question added successfully.");
     }
+
 
     // Remove a question by ID
     // Updates the list and rewrites the CSV file
     public static void RemoveQuestion()
     {
         Console.WriteLine("Enter Question ID to remove:");
-        if (!int.TryParse(Console.ReadLine(), out int id))
-        {
-            Console.WriteLine("Invalid ID.");
-            return;
-        }
+        int id = int.Parse(Console.ReadLine());
 
         List<Question> questions = Question.GetAllQuestions();
-        Question? q = questions.FirstOrDefault(x => x.QuestionID == id);
+        Question q = questions.FirstOrDefault(x => x.QuestionID == id);
 
         if (q == null)
         {
@@ -242,8 +225,12 @@ public static class QuizSystem
             return;
         }
 
+        // Remove from list
         questions.Remove(q);
+
+        // Rewrite CSV without the removed question
         Question.SaveAllQuestionsToCSV(destinationFilePath);
         Console.WriteLine("Question removed successfully.");
     }
+
 }
