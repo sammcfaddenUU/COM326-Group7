@@ -1,0 +1,13 @@
+QuestionID,QuestionText,QuestionOptions,CorrectAnswer,DifficulityLevel
+1,What does OOP stand for?,"[""Object-Oriented Programming"",""Operational Output Processing"", ""Open Order Protocol"", ""Overloaded Operator Procedure""]",Object-Oriented Programming,Easy
+2,Which of the following is NOT a core principle of OOP?,"[""Encapsulation"", ""Polymorphism"", ""Abstraction"", ""Compilation""]",Compilation,Easy
+3,What is encapsulation in object-oriented programming?,"[""Binding data and methods"", ""Inheritance"", ""Overloading"", ""Creating objects""]","Binding data and 
+methods",Medium
+4,Which keyword is used in C# to inherit a class?,"[""extends"", ""inherits"", "":"", ""base""] ",: ,Medium
+5,What is the purpose of a constructor in a class?,"[""To destroy objects"", ""To initialize objects"", ""To inherit methods"", ""To override properties""]",To initialize objects,Easy
+6,Which concept allows multiple methods with the same name but different parameters?,"[""Inheritance"", ""Polymorphism"", ""Overloading"", ""Encapsulation""]",Overloading,Medium
+7,What is the base class for all classes in C#?,"[""System.Object"", ""BaseClass"", ""RootClass"", ""MainClass""]",System.Object ,Hard
+8,What is the difference between a class and an object?,"[""Class is an instance, object is a blueprint"", ""Class is a blueprint, object is an instance"", ""They are the same"", ""Object inherits class""]","Class is a blueprint, object is an instance",Medium
+9,Which access modifier makes a member accessible only within its own class?,"[""public"", ""private"", ""protected"", 
+""internal""]",private,Easy
+10,What is polymorphism in OOP?,"[""Ability to hide data"", ""Ability to inherit methods"", ""Ability to take many forms"", ""Ability to override constructors""]",Ability to take many forms,Medium
