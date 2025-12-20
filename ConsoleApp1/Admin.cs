@@ -87,4 +87,61 @@ public class Admin : User
             Console.WriteLine("User not found.");
         }
     }
+    public void AddquizCatagory()
+    {
+        Console.Write("Enter quiz category name: ");
+        string categoryName = Console.ReadLine();
+        // Here you would typically add the category to a database or a list
+        Console.WriteLine($"Quiz category '{categoryName}' added.");
+
+        using (var writer = new StreamWriter(filePath, true))
+        {
+            writer.WriteLine($"{categoryName}");
+        }
+    }
+
+    public void RemoveQuizCategory()
+    {
+        Console.Write("Enter quiz category name to remove: ");
+        string deleteName = Console.ReadLine();
+
+        if (string.IsNullOrWhiteSpace(deleteName))
+        {
+            Console.WriteLine("Category name cannot be empty.");
+            return;
+        }
+
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("No categories found.");
+            return;
+        }
+
+        // Read all lines from the file
+        var lines = File.ReadAllLines(filePath);
+        var updatedLines = new List<string>();
+        bool found = false;
+
+        // Keep all lines except the one to remove
+        foreach (var line in lines)
+        {
+            if (line.Trim().Equals(deleteName, StringComparison.OrdinalIgnoreCase) && !found)
+            {
+                found = true; // Remove only the first match
+                continue;
+            }
+            updatedLines.Add(line);
+        }
+
+        if (found)
+        {
+            // Write the updated list back to the file
+            File.WriteAllLines(filePath, updatedLines);
+            Console.WriteLine($"Quiz category '{deleteName}' removed.");
+        }
+        else
+        {
+            Console.WriteLine($"Quiz category '{deleteName}' not found.");
+        }
+    }
 }

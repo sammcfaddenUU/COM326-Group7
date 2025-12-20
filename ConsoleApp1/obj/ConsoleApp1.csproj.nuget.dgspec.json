@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sammy Boi\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {}
+    "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sammy Boi\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj": {
+    "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sammy Boi\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectUniqueName": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj",
         "projectName": "ConsoleApp1",
-        "projectPath": "C:\\Users\\Sammy Boi\\source\\repos\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+        "projectPath": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj",
         "packagesPath": "C:\\Users\\Sammy Boi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sammy Boi\\source\\repos\\ConsoleApp1\\ConsoleApp1\\obj\\",
+        "outputPath": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sammy Boi\\AppData\\Roaming\\NuGet\\NuGet.Config",
