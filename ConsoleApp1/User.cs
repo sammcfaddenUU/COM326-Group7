@@ -1,3 +1,5 @@
+// Author Samuel McFadden
+
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -173,3 +175,4 @@ public class User
         File.WriteAllLines(filePath, lines);
     }
 }
+
