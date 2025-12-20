@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -79,12 +79,66 @@ public class User
 
     public void Logout()
     {
-        Console.WriteLine("User logged out.");
+        Console.WriteLine("=== Logout ===\n");
+        Console.WriteLine("Logging out...");
+        Environment.Exit(0);
+
     }
 
     public void UpdateProfile()
     {
-        Console.WriteLine("User profile updated.");
+        Console.Clear();
+        Console.WriteLine("=== Update Profile ===\n");
+
+        // Find the current user in the users list
+        User currentUser = users.Find(u => u.Username == this.username);
+
+        if (currentUser == null)
+        {
+            Console.WriteLine("User not found in database.");
+            Console.WriteLine("\nPress any key to return...");
+            Console.ReadKey();
+            return;
+        }
+
+        // Display current information
+        Console.WriteLine("Current Profile Information:");
+        Console.WriteLine($"Username: {currentUser.Username}");
+        Console.WriteLine($"Password: {currentUser.Password}");
+        Console.WriteLine();
+
+        // Get new username
+        Console.Write("Enter new username (or press Enter to keep current): ");
+        string newUsername = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(newUsername))
+        {
+            // Check if new username already exists
+            if (users.Exists(u => u.Username == newUsername && u.Username != currentUser.Username))
+            {
+                Console.WriteLine("Username already exists. Update cancelled.");
+                Console.WriteLine("\nPress any key to return...");
+                Console.ReadKey();
+                return;
+            }
+            currentUser.Username = newUsername;
+            this.username = newUsername;
+        }
+
+        // Get new password
+        Console.Write("Enter new password (or press Enter to keep current): ");
+        string newPassword = Console.ReadLine();
+        if (!string.IsNullOrWhiteSpace(newPassword))
+        {
+            currentUser.Password = newPassword;
+            this.password = newPassword;
+        }
+
+        // Save changes to CSV
+        SaveUsersToCsv();
+
+        Console.WriteLine("\nProfile updated successfully!");
+        Console.WriteLine("\nPress any key to return...");
+        Console.ReadKey();
     }
 
     protected void LoadUsersFromCsv()
