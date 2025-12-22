@@ -8,19 +8,24 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Sammy Boi\\.nuget\\packages\\": {}
+    "C:\\Users\\conor\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Users\\conor\\Source\\Repos\\COM326-Group7-Main\\ConsoleApp1\\ConsoleApp1.csproj",
       "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\ConsoleApp1.csproj",
-      "packagesPath": "C:\\Users\\Sammy Boi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sammy Boi\\Source\\Repos\\COM326-Group7\\ConsoleApp1\\obj\\",
+      "projectPath": "C:\\Users\\conor\\Source\\Repos\\COM326-Group7-Main\\ConsoleApp1\\ConsoleApp1.csproj",
+      "packagesPath": "C:\\Users\\conor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\conor\\Source\\Repos\\COM326-Group7-Main\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Sammy Boi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\conor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

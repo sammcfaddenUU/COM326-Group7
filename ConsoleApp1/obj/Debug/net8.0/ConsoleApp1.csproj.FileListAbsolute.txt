@@ -29,3 +29,11 @@ C:\Users\Sammy Boi\Source\Repos\COM326-Group7\ConsoleApp1\obj\Debug\net8.0\refin
 C:\Users\Sammy Boi\Source\Repos\COM326-Group7\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
 C:\Users\Sammy Boi\Source\Repos\COM326-Group7\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.genruntimeconfig.cache
 C:\Users\Sammy Boi\Source\Repos\COM326-Group7\ConsoleApp1\obj\Debug\net8.0\ref\ConsoleApp1.dll
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
+C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
