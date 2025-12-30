@@ -37,3 +37,11 @@ C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\Cons
 C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
 C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
 C:\Users\conor\Source\Repos\COM326-Group7-Main\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfoInputs.cache
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.AssemblyInfo.cs
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.csproj.CoreCompileInputs.cache
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.sourcelink.json
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.dll
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\refint\ConsoleApp1.dll
+C:\Users\CandT\source\repos\COM326-V2\ConsoleApp1\obj\Debug\net8.0\ConsoleApp1.pdb
