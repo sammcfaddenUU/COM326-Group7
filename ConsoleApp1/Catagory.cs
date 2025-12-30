@@ -3,9 +3,7 @@
 public class Category
 {
     
-    
-
-        private int categoryID;
+    private int categoryID;
     private string categoryName;
     private string categoryDescription;
 
@@ -31,5 +29,18 @@ public class Category
         this.categoryID = categoryID;
         this.categoryName = categoryName;
         this.categoryDescription = categoryDescription;
+    }
+
+    // Filter categories by name
+    public static Category Filter(List<Category> categories, string name)
+    {
+        foreach (Category category in categories)
+        {
+            if (category.CategoryName == name)
+            {
+                return category;
+            }
+        }
+        return null;
     }
 }

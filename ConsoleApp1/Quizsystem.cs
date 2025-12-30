@@ -81,7 +81,8 @@ public static class QuizSystem
             Console.WriteLine("3. Show All Questions");
             Console.WriteLine("4. Add Question");
             Console.WriteLine("5. Remove Question");
-            Console.WriteLine("6. Exit");
+            Console.WriteLine("6. Filter Questions by Category");
+            Console.WriteLine("7. Exit");
 
             Console.Write("Select an option: ");
             string? choice = Console.ReadLine();
@@ -104,6 +105,10 @@ public static class QuizSystem
                     RemoveQuestion();
                     break;
                 case "6":
+                    FilterQuestion();
+                    break;
+                case "7":
+                    Console.WriteLine("Exiting...");
                     return;
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
@@ -233,4 +238,37 @@ public static class QuizSystem
         Console.WriteLine("Question removed successfully.");
     }
 
+    public static void FilterQuestion()
+    {
+        Console.WriteLine("Select Category: ");
+
+        // Get distinct categories from questions
+        List<string> categories = Question.GetAllQuestions()
+            .Select(q => q.QuestionDifficulty)
+            .Distinct()
+            .ToList();
+
+        for (int i = 0; i < categories.Count; i++) 
+        {
+            Console.WriteLine($"{i + 1}. {categories[i]}");
+        }
+
+        // Get user choice
+        int choice = int.Parse(Console.ReadLine());
+        string selectedCategory = categories[choice - 1];
+
+        var filteredQuestions = Question.GetAllQuestions()
+            .Where(q => q.QuestionDifficulty == selectedCategory)
+            .ToList();
+
+        // Display filtered questions
+        foreach (var q in filteredQuestions)
+        {
+            Console.WriteLine($"ID: {q.QuestionID}");
+            Console.WriteLine($"Text: {q.QuestionText}");
+            Console.WriteLine($"Options: {q.QuestionOptions}");
+            Console.WriteLine($"Correct Answer: {q.QuestionCorrectAnswer}");
+            Console.WriteLine($"Difficulty: {q.QuestionDifficulty}");
+        }
+    }
 }
