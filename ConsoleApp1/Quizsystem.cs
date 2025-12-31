@@ -7,13 +7,22 @@ public static class QuizSystem
 {
     // File path where CSV is stored
     private static string destinationFilePath = string.Empty;
-
+    private static List<Category> categories;
     // Loads questions from CSV and starts the menu
     public static void Main()
     {
         try
         {
             string folder = "Data";
+
+            //Load categories
+            string categoryFile = "Categories.csv";
+            string categoryFilePath = CopyDataToWorkingDir(folder, categoryFile);
+
+            categories = Category.LoadCategories(categoryFilePath);
+            Console.WriteLine($"Loaded {categories.Count} categories successfully.");
+
+            //Load questions
             string filename = "Question.csv";
 
             // Copy CSV into working directory
@@ -44,14 +53,14 @@ public static class QuizSystem
     {
         // Get the application's base directory
         string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-        
+
         Console.WriteLine($"Base directory: {baseDirectory}");
-        
+
         // Build the source path (where the file is stored in your project)
         string sourcePath = Path.Combine(baseDirectory, folder, filename);
-        
+
         Console.WriteLine($"Looking for file at: {sourcePath}");
-        
+
         // Build the destination path (where we want to copy it for working)
         string destinationPath = Path.Combine(baseDirectory, filename);
 
@@ -62,10 +71,10 @@ public static class QuizSystem
         }
 
         Console.WriteLine("Copying file to working directory...");
-        
+
         // Copy the file to the working directory
         File.Copy(sourcePath, destinationPath, overwrite: true);
-        
+
         return destinationPath;
     }
 
@@ -242,33 +251,29 @@ public static class QuizSystem
     {
         Console.WriteLine("Select Category: ");
 
-        // Get distinct categories from questions
-        List<string> categories = Question.GetAllQuestions()
-            .Select(q => q.QuestionDifficulty)
-            .Distinct()
-            .ToList();
-
-        for (int i = 0; i < categories.Count; i++) 
+        for (int i = 0; i < categories.Count; i++)
         {
-            Console.WriteLine($"{i + 1}. {categories[i]}");
+            Console.WriteLine($"{categories[i].CategoryID} {categories[i].CategoryName} ");
         }
 
-        // Get user choice
         int choice = int.Parse(Console.ReadLine());
-        string selectedCategory = categories[choice - 1];
 
         var filteredQuestions = Question.GetAllQuestions()
-            .Where(q => q.QuestionDifficulty == selectedCategory)
+            .Where(q => q.QuestionDifficulty == categories.FirstOrDefault(c => c.CategoryID == choice)?.CategoryName)
             .ToList();
 
-        // Display filtered questions
+        if (filteredQuestions.Count == 0)
+        {
+            Console.WriteLine("No questions found for the selected category.");
+            return;
+        }
+
         foreach (var q in filteredQuestions)
         {
             Console.WriteLine($"ID: {q.QuestionID}");
             Console.WriteLine($"Text: {q.QuestionText}");
             Console.WriteLine($"Options: {q.QuestionOptions}");
             Console.WriteLine($"Correct Answer: {q.QuestionCorrectAnswer}");
-            Console.WriteLine($"Difficulty: {q.QuestionDifficulty}");
         }
     }
 }

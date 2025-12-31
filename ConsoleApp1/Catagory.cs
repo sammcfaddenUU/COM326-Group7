@@ -11,7 +11,6 @@ public class Category
     {
         get { return categoryID; }
         set { categoryID = value; }
-
     }
     public string CategoryName
     {
@@ -31,12 +30,30 @@ public class Category
         this.categoryDescription = categoryDescription;
     }
 
+    // Load categories from a text file
+    public static List<Category> LoadCategories(string filePath)
+    {
+        List<Category> categories = new List<Category>();
+        string[] lines = File.ReadAllLines(filePath);
+
+        for (int i = 0; i < lines.Length; i+=3)
+        {
+            int id = int.Parse(lines[i]);
+            string name = lines[i + 1];
+            string description = lines[i + 2];
+
+            Category category = new Category(id, name, description);
+            categories.Add(category);
+        }
+
+        return categories;
+    }
     // Filter categories by name
-    public static Category Filter(List<Category> categories, string name)
+    public static Category Filter(List<Category> categories, int id)
     {
         foreach (Category category in categories)
         {
-            if (category.CategoryName == name)
+            if (category.CategoryName == id.ToString())
             {
                 return category;
             }
