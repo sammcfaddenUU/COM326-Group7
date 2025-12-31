@@ -53,7 +53,7 @@ public class Category
     {
         foreach (Category category in categories)
         {
-            if (category.CategoryName == id.ToString())
+            if (category.CategoryID == id)
             {
                 return category;
             }

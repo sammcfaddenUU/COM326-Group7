@@ -251,16 +251,25 @@ public static class QuizSystem
     {
         Console.WriteLine("Select Category: ");
 
-        for (int i = 0; i < categories.Count; i++)
+        foreach(Category c in categories)
         {
-            Console.WriteLine($"{categories[i].CategoryID} {categories[i].CategoryName} ");
+            Console.WriteLine($"{c.CategoryID}. {c.CategoryName} - {c.CategoryDescription}");
         }
 
         int choice = int.Parse(Console.ReadLine());
 
+        Category selectedCategory =Category.Filter(categories, choice);
+
+        if (selectedCategory == null)
+        {
+            Console.WriteLine("Invalid category selected.");
+            return;
+        }
+
         var filteredQuestions = Question.GetAllQuestions()
-            .Where(q => q.QuestionDifficulty == categories.FirstOrDefault(c => c.CategoryID == choice)?.CategoryName)
+            .Where(q => q.QuestionDifficulty == selectedCategory.CategoryName)
             .ToList();
+
 
         if (filteredQuestions.Count == 0)
         {
